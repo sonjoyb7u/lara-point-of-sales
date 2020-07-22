@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Unit Create || ')
+@section('title', 'Category Create || ')
 
 @section('main-content')
 
@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Create Unit</h1>
+            <h1 class="m-0 text-dark">Create Category</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Home</li>
-              <li class="breadcrumb-item {{ request()->is('home/units/create') ? 'active' : '' }}"><a href="{{ route('unit.create') }}">Create Unit</a></li>
+              <li class="breadcrumb-item {{ request()->is('home/categories/create') ? 'active' : '' }}"><a href="{{ route('category.create') }}">Create Category</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -29,20 +29,20 @@
             @includeIf('alert-message.message')
             <div class="card card-info">
                 <div class="card-header">
-                    <h3 class="card-title">Create Unit Form</h3>
+                    <h3 class="card-title">Create Category Form</h3>
                 </div>
                 <!-- /.card-header -->
 
                 <!-- form start -->
-              <form class="form-horizontal" id="unitCreateForm" action="{{ route('unit.store') }}" method="POST">
+              <form class="form-horizontal" id="categoryCreateForm" action="{{ route('category.store') }}" method="POST">
                 @csrf
 
                 <div class="card-body">
 
                   <div class="form-row">  
                     <div class="form-group col-md-6">
-                        <label for="name">Unit Name</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Unit Name" value="{{ old('name') }}">
+                        <label for="name">Category Name</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Category Name" value="{{ old('name') }}">
                         @error('name')
                         <p class="text-danger fade show">{{ $message }}</p>
                         @enderror
@@ -52,7 +52,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Create Unit</button>
+                  <button type="submit" class="btn btn-info">Create Category</button>
                 </div>
                 <!-- /.card-footer -->
               </form>

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Admin\\Category\\CategoryController' => $baseDir . '/app/Http/Controllers/Admin/Category/CategoryController.php',
     'App\\Http\\Controllers\\Admin\\Customer\\CustomerController' => $baseDir . '/app/Http/Controllers/Admin/Customer/CustomerController.php',
     'App\\Http\\Controllers\\Admin\\Supplier\\SupplierController' => $baseDir . '/app/Http/Controllers/Admin/Supplier/SupplierController.php',
     'App\\Http\\Controllers\\Admin\\Unit\\UnitController' => $baseDir . '/app/Http/Controllers/Admin/Unit/UnitController.php',
@@ -31,6 +32,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\isAccess' => $baseDir . '/app/Http/Middleware/isAccess.php',
+    'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Customer' => $baseDir . '/app/Models/Customer.php',
     'App\\Models\\Supplier' => $baseDir . '/app/Models/Supplier.php',
     'App\\Models\\Unit' => $baseDir . '/app/Models/Unit.php',

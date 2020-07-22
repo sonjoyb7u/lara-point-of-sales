@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Category\'s Manage || ')
+@section('title', 'Categories Manage || ')
 
 @push('css')
 <style>
@@ -17,12 +17,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Category's</h1>
+            <h1 class="m-0 text-dark">Manage Categories</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Home</li>
-              <li class="breadcrumb-item {{ request()->is('home/categories') ? 'active' : '' }}"><a href="{{ route('category.index') }}">Manage Category's</a></li>
+              <li class="breadcrumb-item {{ request()->is('home/categories') ? 'active' : '' }}"><a href="{{ route('category.index') }}">Manage Categories</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,7 +37,7 @@
             @includeIf('alert-message.message')
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Category's List of Datatable</h3>
+                    <h3 class="card-title">Categories List of Datatable</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -46,7 +46,8 @@
                     <tr>
                         <th>Sl No.</th>
                         <th>Category Name</th>
-                        <th>Created By</th>   
+                        <th>Category Slug</th>
+                        <th>Created By</th>
                         <th>Updated By</th>                     
                         <th>Status</th>
                         <th>Action</th>
@@ -57,8 +58,9 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $data->name }}</td>
-                        <td>{{ $data->created_by }}</td>
-                        <td>{{ $data->updated_by }}</td>
+                        <td>{{ $data->slug }}</td>
+                        <td>{{ $data->created_by }}({{ \Auth::user()->user_type == 'super_admin' ? 'Super Admin' : 'Admin' }})</td>
+                        <td>{{ $data->updated_by }}({{ \Auth::user()->user_type == 'super_admin' ? 'Super Admin' : 'Admin' }})</td>
                         <td>
                         <input type="checkbox" id="categoryStatusToggle" data-id="{{ $data->id }}" {{ $data->status == 'active' ? 'checked' : '' }}  data-toggle="toggle" data-size="xs" data-on="Active" data-off="InActive" data-onstyle="success" data-offstyle="danger" >
                         </td>

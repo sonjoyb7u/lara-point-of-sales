@@ -102,7 +102,7 @@ class UnitController extends Controller
         $delete = $unit->delete();
         if ($delete) {
             getMessage('success', 'Success, Unit has been Deleted.');
-            return redirect()->route('customer.index')->with('success', 'Success, Unit has been Deleted.');
+            return redirect()->route('unit.index')->with('success', 'Success, Unit has been Deleted.');
 
         } else {
             getMessage('danger', 'Failed, Unit has not been Deleted.');

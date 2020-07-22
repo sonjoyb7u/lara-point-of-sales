@@ -165,6 +165,31 @@
               </li>
             </ul>
           </li>
+{{--      CATEGORY SECTION...--}}
+          <li class="nav-item has-treeview {{ request()->is('home/categories', 'home/categories*') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{ request()->is('home/categories', 'home/categories/*') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-sitemap"></i>
+              <p>
+                Category Section
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">6</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('category.create') }}" class="nav-link {{ request()->is('home/categories/create') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Add Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('category.index') }}" class="nav-link {{ request()->is('home/categories') ? 'active' : ''}} {{ request()->is('home/categories/edit*') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Manage categories</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           
         </ul>
       </nav>

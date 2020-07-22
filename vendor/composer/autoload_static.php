@@ -488,6 +488,7 @@ class ComposerStaticInitba87c57ac23b8470cd97ba22fd30eb7e
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\Category\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Category/CategoryController.php',
         'App\\Http\\Controllers\\Admin\\Customer\\CustomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Customer/CustomerController.php',
         'App\\Http\\Controllers\\Admin\\Supplier\\SupplierController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Supplier/SupplierController.php',
         'App\\Http\\Controllers\\Admin\\Unit\\UnitController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Unit/UnitController.php',
@@ -511,6 +512,7 @@ class ComposerStaticInitba87c57ac23b8470cd97ba22fd30eb7e
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\isAccess' => __DIR__ . '/../..' . '/app/Http/Middleware/isAccess.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',
         'App\\Models\\Supplier' => __DIR__ . '/../..' . '/app/Models/Supplier.php',
         'App\\Models\\Unit' => __DIR__ . '/../..' . '/app/Models/Unit.php',
