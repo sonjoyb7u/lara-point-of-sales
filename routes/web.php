@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function () {
     Route::get('/', 'HomeController@index')->name('home');
-
+    // USER SECTION ROUTE...
     Route::group(['prefix' => 'user', 'namespace' => 'Admin\User', 'as' => 'user.'], function () {
         Route::get('/', 'UserController@index')->name('index');
         Route::get('create', 'UserController@create')->name('create');
@@ -35,7 +35,7 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::get('delete/{id}', 'UserController@destroy')->name('delete');
         Route::post('status', 'UserController@status')->name('status');
     });
-
+    // USER PROFILE SECTION ROUTE...
     Route::group(['prefix' => 'user/profile', 'namespace' => 'Admin\User\Profile', 'as' => 'user.profile.'], function () {
         Route::get('/', 'UserProfileController@index')->name('index');
         Route::get('edit', 'UserProfileController@edit')->name('edit');
@@ -43,7 +43,7 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::get('password/edit', 'UserProfileController@passwordEdit')->name('password.edit');
         Route::post('password/update', 'UserProfileController@passwordUpdate')->name('password.update');
     });
-
+    // SUPPLIER SECTION ROUTE...
     Route::group(['prefix' => 'suppliers', 'namespace' => 'Admin\Supplier', 'as' => 'supplier.'], function () {
         Route::get('/', 'SupplierController@index')->name('index');
         Route::get('create', 'SupplierController@create')->name('create');
@@ -54,7 +54,7 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::get('delete/{id}', 'SupplierController@destroy')->name('delete');
         Route::post('status', 'SupplierController@status')->name('status');
     });
-
+    // CUSTOMER SECTION ROUTE...
     Route::group(['prefix' => 'customers', 'namespace' => 'Admin\Customer', 'as' => 'customer.'], function () {
         Route::get('/', 'CustomerController@index')->name('index');
         Route::get('create', 'CustomerController@create')->name('create');
@@ -65,7 +65,7 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::get('delete/{id}', 'CustomerController@destroy')->name('delete');
         Route::post('status', 'CustomerController@status')->name('status');
     });
-
+    // UNIT SECTION ROUTE...
     Route::group(['prefix' => 'units', 'namespace' => 'Admin\Unit', 'as' => 'unit.'], function () {
         Route::get('/', 'UnitController@index')->name('index');
         Route::get('create', 'UnitController@create')->name('create');
@@ -75,6 +75,17 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::put('update/{id}', 'UnitController@update')->name('update');
         Route::get('delete/{id}', 'UnitController@destroy')->name('delete');
         Route::post('status', 'UnitController@status')->name('status');
+    });
+    // CATEGORY SECTION ROUTE...
+    Route::group(['prefix' => 'categories', 'namespace' => 'Admin\Category', 'as' => 'category.'], function () {
+        Route::get('/', 'CategoryController@index')->name('index');
+        Route::get('create', 'CategoryController@create')->name('create');
+        Route::post('store', 'CategoryController@store')->name('store');
+        Route::get('show/{id}', 'CategoryController@show')->name('show');
+        Route::get('edit/{id}', 'CategoryController@edit')->name('edit');
+        Route::put('update/{id}', 'CategoryController@update')->name('update');
+        Route::get('delete/{id}', 'CategoryController@destroy')->name('delete');
+        Route::post('status', 'CategoryController@status')->name('status');
     });
 
 
