@@ -22,7 +22,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Home</li>
-              <li class="breadcrumb-item {{ request()->is('home/customer') ? 'active' : '' }}"><a href="{{ route('customer.index') }}">Manage Customer's</a></li>
+              <li class="breadcrumb-item {{ request()->is('home/customers') ? 'active' : '' }}"><a href="{{ route('customer.index') }}">Manage Customer's</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

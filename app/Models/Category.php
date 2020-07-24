@@ -9,4 +9,7 @@ class Category extends Model
     protected  $fillable  = [
         'name', 'slug', 'status', 'created_by', 'updated_by',
     ];
+
+    public const ACTIVE_STATUS = 'active';
+    public const INACTIVE_STATUS = 'inactive';
 }

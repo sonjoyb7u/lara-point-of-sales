@@ -34,7 +34,7 @@
                 <!-- /.card-header -->
 
                 <!-- form start -->
-              <form class="form-horizontal" id="unitCreateForm" action="{{ route('category.update', base64_encode($category->id)) }}" method="POST">
+              <form class="form-horizontal" id="categoryCreateForm" action="{{ route('category.update', base64_encode($category->id)) }}" method="POST">
                 @csrf
                 @method('PUT')
 

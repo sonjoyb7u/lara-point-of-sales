@@ -88,6 +88,46 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::post('status', 'CategoryController@status')->name('status');
     });
 
+    // SUB CATEGORY SECTION ROUTE...
+    Route::group(['prefix' => 'sub-categories', 'namespace' => 'Admin\SubCategory', 'as' => 'sub-category.'], function () {
+        Route::get('/', 'SubCategoryController@index')->name('index');
+        Route::get('create', 'SubCategoryController@create')->name('create');
+        Route::post('store', 'SubCategoryController@store')->name('store');
+        Route::get('show/{id}', 'SubCategoryController@show')->name('show');
+        Route::get('edit/{id}', 'SubCategoryController@edit')->name('edit');
+        Route::put('update/{id}', 'SubCategoryController@update')->name('update');
+        Route::get('delete/{id}', 'SubCategoryController@destroy')->name('delete');
+        Route::post('status', 'SubCategoryController@status')->name('status');
+    });
+
+    // PRODUCT SECTION ROUTE...
+    Route::group(['prefix' => 'products', 'namespace' => 'Admin\Product', 'as' => 'product.'], function () {
+        Route::get('/', 'ProductController@index')->name('index');
+        Route::get('create', 'ProductController@create')->name('create');
+        Route::post('store', 'ProductController@store')->name('store');
+        Route::get('show/{id}', 'ProductController@show')->name('show');
+        Route::get('edit/{id}', 'ProductController@edit')->name('edit');
+        Route::put('update/{id}', 'ProductController@update')->name('update');
+        Route::get('delete/{id}', 'ProductController@destroy')->name('delete');
+        Route::post('status', 'ProductController@status')->name('status');
+    });
+
+    // PURCHASE SECTION ROUTE...
+    Route::group(['prefix' => 'purchases', 'namespace' => 'Admin\Purchase', 'as' => 'purchase.'], function () {
+        Route::get('/', 'PurchaseController@index')->name('index');
+        Route::get('create', 'PurchaseController@create')->name('create');
+        Route::post('store', 'PurchaseController@store')->name('store');
+        Route::get('show/{id}', 'PurchaseController@show')->name('show');
+        Route::get('edit/{id}', 'PurchaseController@edit')->name('edit');
+        Route::put('update/{id}', 'PurchaseController@update')->name('update');
+        Route::get('delete/{id}', 'PurchaseController@destroy')->name('delete');
+        Route::post('status', 'PurchaseController@status')->name('status');
+        Route::post('supp-wise-cat', 'PurchaseController@supplierWiseCategory')->name('supp-wise-cat');
+        Route::post('cat-wise-subcat', 'PurchaseController@categoryWiseSubCategory')->name('cat-wise-subcat');
+        Route::post('cat-wise-unit', 'PurchaseController@categoryWiseUnit')->name('cat-wise-unit');
+        Route::post('cat-wise-product', 'PurchaseController@categoryWiseProduct')->name('cat-wise-product');
+    });
+
 
 
     

@@ -190,6 +190,81 @@
               </li>
             </ul>
           </li>
+{{--      SUB CATEGORY SECTION...--}}
+          <li class="nav-item has-treeview {{ request()->is('home/sub-categories', 'home/sub-categories*') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{ request()->is('home/sub-categories', 'home/sub-categories/*') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-sitemap"></i>
+              <p>
+                Sub Category Section
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">6</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('sub-category.create') }}" class="nav-link {{ request()->is('home/sub-categories/create') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Add Sub Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('sub-category.index') }}" class="nav-link {{ request()->is('home/sub-categories') ? 'active' : ''}} {{ request()->is('home/sub-categories/edit*') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Manage Sub Categories</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+{{--      PRODUCT SECTION... --}}
+          <li class="nav-item has-treeview {{ request()->is('home/products', 'home/products*') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{ request()->is('home/products', 'home/products/*') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-sitemap"></i>
+              <p>
+                Product Section
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">6</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('product.create') }}" class="nav-link {{ request()->is('home/products/create') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Add Product</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('product.index') }}" class="nav-link {{ request()->is('home/products') ? 'active' : ''}} {{ request()->is('home/products/edit*') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Manage Products</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+{{--      PURCHASE SECTION... --}}
+          <li class="nav-item has-treeview {{ request()->is('home/purchases', 'home/purchases*') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{ request()->is('home/purchases', 'home/purchases/*') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-sitemap"></i>
+              <p>
+                Purchases Section
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">6</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('purchase.create') }}" class="nav-link {{ request()->is('home/purchases/create') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Add Purchase</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('purchase.index') }}" class="nav-link {{ request()->is('home/purchases') ? 'active' : ''}} {{ request()->is('home/purchases/edit*') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Manage Purchases</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           
         </ul>
       </nav>

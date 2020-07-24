@@ -6,9 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>@yield('title') {{ config('app.name', 'Laravel Product Sales') }}</title>
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
@@ -35,6 +33,8 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- Datetime Gijgo picker -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/summernote/summernote-bs4.css') }}">
     <!-- custom css -->
@@ -46,6 +46,7 @@
             z-index: 10000 !important;
         } */
     </style>
+
     
     @stack('css')
 
@@ -149,12 +150,17 @@
     <!-- jquery-validation -->
     <script src="{{ asset('assets/admin/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/admin/plugins/jquery-validation/additional-methods.min.js') }}"></script>
+    <!--Datetime Gijgo picker-->
+    <script src="{{ asset('assets/admin/custom/plugins/datetime-picker/gijgo-datepicker/js/gijgo.min.js') }}" type="text/javascript"></script>
     <!-- Notify js -->
     <script src="{{ asset('assets/admin/custom/plugins/notify-message/js/notify.min.js') }}"></script>
     <!-- Sweetalert2 js -->
     <script src="{{ asset('assets/admin/custom/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    <!-- Handbars js -->
+    <script src="{{ asset('assets/admin/custom/plugins/handlebars/js/handlebars.min.js') }}"></script>
     <!-- custom js -->
     <script src="{{ asset('assets/admin/custom/js/custom.js') }}"></script>
+
 
     {{-- Notify Message js... --}}
     @if (session()->has('success'))

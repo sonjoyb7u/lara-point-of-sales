@@ -27,9 +27,9 @@ $(function () {
     //Initialize Select2 Elements
     $('.select2bs4').select2({
         theme: 'bootstrap4',
-    })
+    });
 
-})
+});
 
 // Status Active/Inactive Bootstrap Switch js...
 $(function () {
@@ -330,6 +330,149 @@ $(document).ready(function () {
         }
     });
 
+});
+
+// Form validation for Edit/Change Sub Category Form jQuery...
+$(document).ready(function () {
+    $('#subCategoryCreateForm').validate({
+        rules: {
+            name: {
+                required: true,
+            },
+        },
+        messages: {
+            name: {
+                required: "Please enter Sub Category name!",
+            },
+        },
+
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+
+});
+
+// Form validation for Edit/Change Product Form jQuery...
+$(document).ready(function () {
+    $('#productCreateForm').validate({
+        rules: {
+            supplier_id: {
+                required: true,
+            },
+            category_id: {
+                required: true,
+            },
+            name: {
+                required: true,
+            },
+            unit_id: {
+                required: true,
+            },
+            qty: {
+                required: true,
+            },
+        },
+        messages: {
+            supplier_id: {
+                required: "Please Choose Supplier name!",
+            },
+            category_id: {
+                required: "Please Choose Category name!",
+            },
+            name: {
+                required: "Please enter Product name!",
+            },
+            unit_id: {
+                required: "Please Choose Unit name!",
+            },
+            qty: {
+                required: "Please enter quantity!",
+            },
+        },
+
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+
+});
+
+// Form validation for Edit/Change Purchase Form jQuery...
+$(document).ready(function () {
+    $('#productCreateForm').validate({
+        rules: {
+            supplier_id: {
+                required: true,
+            },
+            category_id: {
+                required: true,
+            },
+            name: {
+                required: true,
+            },
+            unit_id: {
+                required: true,
+            },
+            qty: {
+                required: true,
+            },
+        },
+        messages: {
+            supplier_id: {
+                required: "Please Choose Supplier name!",
+            },
+            category_id: {
+                required: "Please Choose Category name!",
+            },
+            name: {
+                required: "Please enter Product name!",
+            },
+            unit_id: {
+                required: "Please Choose Unit name!",
+            },
+            qty: {
+                required: "Please enter quantity!",
+            },
+        },
+
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+
+});
+
+// DATETIME GIJGO PICKER START/END using js...
+$('.datetimepicker').datetimepicker({
+    uiLibrary: 'bootstrap4',
+    format: 'yyyy-mm-dd hh:MM TT',
+    footer: true,
+    modal: true
 });
 
 

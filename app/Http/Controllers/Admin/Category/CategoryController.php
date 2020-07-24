@@ -119,10 +119,10 @@ class CategoryController extends Controller
      */
     public function status(Request $req) {
         if($req->ajax()) {
-            $unit = Category::where('id', $req->id)->first();
-            $unit->status = $req->status;
+            $category = Category::where('id', $req->id)->first();
+            $category->status = $req->status;
 
-            $unit->save();
+            $category->save();
 
         }
 
