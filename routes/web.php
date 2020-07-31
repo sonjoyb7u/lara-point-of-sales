@@ -133,6 +133,28 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::get('pending-status/{id}', 'PurchaseController@pendingStatus')->name('pending-status');
         Route::get('return-status/{id}', 'PurchaseController@returnStatus')->name('return-status');
     });
+    
+    // PURCHASE SECTION ROUTE...
+    Route::group(['prefix' => 'purchases', 'namespace' => 'Admin\Purchase', 'as' => 'purchase.'], function () {
+        Route::get('/', 'PurchaseController@index')->name('index');
+        Route::get('create', 'PurchaseController@create')->name('create');
+        Route::post('store', 'PurchaseController@store')->name('store');
+        Route::get('show/{id}', 'PurchaseController@show')->name('show');
+        Route::get('edit/{id}', 'PurchaseController@edit')->name('edit');
+        Route::put('update/{id}', 'PurchaseController@update')->name('update');
+        Route::get('delete/{id}', 'PurchaseController@destroy')->name('delete');
+        Route::post('status', 'PurchaseController@status')->name('status');
+        Route::post('supp-wise-cat', 'PurchaseController@supplierWiseCategory')->name('supp-wise-cat');
+        Route::post('cat-wise-subcat', 'PurchaseController@categoryWiseSubCategory')->name('cat-wise-subcat');
+        Route::post('cat-wise-unit', 'PurchaseController@categoryWiseUnit')->name('cat-wise-unit');
+        Route::post('cat-wise-product', 'PurchaseController@categoryWiseProduct')->name('cat-wise-product');
+        Route::get('check-product-stock/{product_id}', 'PurchaseController@checkProductStock')->name('check-product-stock');
+        Route::post('check-product-stock', 'PurchaseController@checkProductListStock')->name('check-product-stock');
+        Route::get('manage-status', 'PurchaseController@manageStatus')->name('manage-status');
+        Route::get('approved-status/{id}', 'PurchaseController@approvedStatus')->name('approved-status');
+        Route::get('pending-status/{id}', 'PurchaseController@pendingStatus')->name('pending-status');
+        Route::get('return-status/{id}', 'PurchaseController@returnStatus')->name('return-status');
+    });
 
 
 
