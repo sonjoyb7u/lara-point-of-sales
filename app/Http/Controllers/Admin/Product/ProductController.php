@@ -55,6 +55,7 @@ class ProductController extends Controller
             'supplier_id' => $req->supplier_id,
             'unit_id' => $req->unit_id,
             'category_id' => $req->category_id,
+            'sub_category_id' => $req->sub_category_id,
             'name' => $req->name,
             'slug' => Str::slug($req->name),
             'qty' => $req->qty,

@@ -106,7 +106,7 @@ $(document).ready(function () {
 });
 
 
-// Sweetalert2 js...
+// Delete data using Sweetalert2 js...
 $('body').on('click', '#deleteData', function (e) {
     e.preventDefault();
     var route = $(this).attr('href');
@@ -126,6 +126,87 @@ $('body').on('click', '#deleteData', function (e) {
             Swal.fire(
                 'Deleted!',
                 'Your file has been deleted.',
+                'success'
+            )
+        }
+    })
+
+});
+
+// Approved purchase status data using Sweetalert2 js...
+$('body').on('click', '#approvedStatus', function (e) {
+    e.preventDefault();
+    var route = $(this).attr('href');
+    // alert(route);
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to Approved this purchase!",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approved it!'
+    }).then((result) => {
+        if (result.value) {
+            window.location.href = route;
+            Swal.fire(
+                'Approved!',
+                'Your purchase has been approved.',
+                'success'
+            )
+        }
+    })
+
+});
+
+// Pending purchase status data using Sweetalert2 js...
+$('body').on('click', '#pendingStatus', function (e) {
+    e.preventDefault();
+    var route = $(this).attr('href');
+    // alert(route);
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to Pending this purchase!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Pending it!'
+    }).then((result) => {
+        if (result.value) {
+            window.location.href = route;
+            Swal.fire(
+                'Pending!',
+                'Your purchase has been pending.',
+                'success'
+            )
+        }
+    })
+
+});
+
+// Return purchase status data using Sweetalert2 js...
+$('body').on('click', '#returnStatus', function (e) {
+    e.preventDefault();
+    var route = $(this).attr('href');
+    // alert(route);
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to Return this purchase!",
+        icon: 'danger',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Return it!'
+    }).then((result) => {
+        if (result.value) {
+            window.location.href = route;
+            Swal.fire(
+                'Returned!',
+                'Your purchase has been returned.',
                 'success'
             )
         }
@@ -416,40 +497,29 @@ $(document).ready(function () {
 
 // Form validation for Edit/Change Purchase Form jQuery...
 $(document).ready(function () {
-    $('#productCreateForm').validate({
+    $('#purchaseCreateForm').validate({
         rules: {
-            supplier_id: {
+            desc: {
                 required: true,
             },
-            category_id: {
+            buying_qty: {
                 required: true,
             },
-            name: {
-                required: true,
-            },
-            unit_id: {
-                required: true,
-            },
-            qty: {
+            unit_price: {
                 required: true,
             },
         },
         messages: {
-            supplier_id: {
-                required: "Please Choose Supplier name!",
+            desc: {
+                required: "Please Enter Product Description!",
             },
-            category_id: {
-                required: "Please Choose Category name!",
+            buying_qty: {
+                required: "Please Enter Product Quantity!",
             },
-            name: {
-                required: "Please enter Product name!",
+            unit_price: {
+                required: "Please Enter Product Price!",
             },
-            unit_id: {
-                required: "Please Choose Unit name!",
-            },
-            qty: {
-                required: "Please enter quantity!",
-            },
+
         },
 
         errorElement: 'span',
@@ -470,7 +540,7 @@ $(document).ready(function () {
 // DATETIME GIJGO PICKER START/END using js...
 $('.datetimepicker').datetimepicker({
     uiLibrary: 'bootstrap4',
-    format: 'yyyy-mm-dd hh:MM TT',
+    format: 'yyyy-mm-dd hh:MM',
     footer: true,
     modal: true
 });

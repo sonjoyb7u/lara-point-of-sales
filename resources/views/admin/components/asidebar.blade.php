@@ -258,9 +258,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('purchase.index') }}" class="nav-link {{ request()->is('home/purchases') ? 'active' : ''}} {{ request()->is('home/purchases/edit*') ? 'active' : ''}}">
+                <a href="{{ route('purchase.index') }}" class="nav-link {{ request()->is('home/purchases', 'home/purchases/edit*') ? 'active' : ''}}">
                   <i class="fas fa-puzzle-piece nav-icon"></i>
                   <p>Manage Purchases</p>
+                </a>
+              </li>
+                <li class="nav-item">
+                <a href="{{ route('purchase.manage-status') }}" class="nav-link {{ request()->is('home/purchases/manage-status*') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Manage Status</p>
                 </a>
               </li>
             </ul>

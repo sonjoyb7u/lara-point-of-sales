@@ -28,4 +28,11 @@ class Product extends Model
     public function sub_category() {
         return $this->belongsTo(SubCategory::class, 'sub_category_id', 'id');
     }
+
+    public function purchases() {
+        return $this->hasMany(Purchase::class, 'product_id', 'id');
+    }
+
+
+
 }

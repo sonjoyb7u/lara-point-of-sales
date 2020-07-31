@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Purchase Manage || ')
+@section('title', 'Change Status || ')
 
 @push('css')
 <style>
@@ -17,12 +17,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Purchase</h1>
+            <h1 class="m-0 text-dark">Manage Status</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">Home</li>
-              <li class="breadcrumb-item {{ request()->is('home/purchases') ? 'active' : '' }}"><a href="{{ route('purchase.index') }}">Manage Purchase</a></li>
+              <li class="breadcrumb-item {{ request()->is('home/purchases/manage-status') ? 'active' : '' }}"><a href="{{ route('purchase.manage-status') }}">Manage Status</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,7 +37,7 @@
             @includeIf('alert-message.message')
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Purchase List of Datatable</h3>
+                    <h3 class="card-title">Change Status List of Datatable</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -73,29 +73,16 @@
                         <td>{{ $data->unit_price }}</td>
                         <td>{{ $data->buying_qty }} {{ $data->unit->name }}</td>
                         <td>{{ $data->buying_price }}</td>
-                        <td width="10%">
+                        <td>
                             @if($data->purchase_status === 'pending')
                             <span class="badge badge-pill {{ randomStatusColor($data->purchase_status) }} text-green">{{ ucwords($data->purchase_status) }}</span>
-                            <a href="{{ route('purchase.approved-status', base64_encode($data->id)) }}" class="btn btn-success btn-sm" id="approvedStatus" title="Approved Status"><i class="far fa-check-square"></i></a>
-                            <a href="{{ route('purchase.return-status', base64_encode($data->id)) }}" class="btn btn-danger btn-sm" id="returnStatus" title="Return Status"><i class="fas fa-undo-alt"></i></a>
-                            @elseif($data->purchase_status === 'approved')
-                            <span class="badge badge-pill {{ randomStatusColor($data->purchase_status) }} text-yellow">{{ ucwords($data->purchase_status) }}</span>
-                            <a href="{{ route('purchase.pending-status', base64_encode($data->id)) }}" class="btn btn-warning btn-sm" id="pendingStatus" title="Pending Status"><i class="far fa-pause-circle"></i></a>
-                            <a href="{{ route('purchase.return-status', base64_encode($data->id)) }}" class="btn btn-danger btn-sm" id="returnStatus" title="Return Status"><i class="fas fa-undo-alt"></i></a>
                             @else
                             <span class="badge badge-pill {{ randomStatusColor($data->purchase_status) }} text-light">{{ ucwords($data->purchase_status) }}</span>
-                            <a href="{{ route('purchase.pending-status', base64_encode($data->id)) }}" class="btn btn-warning btn-sm" id="pendingStatus" title="Pending Status"><i class="far fa-pause-circle"></i></a>
-                            <a href="{{ route('purchase.approved-status', base64_encode($data->id)) }}" class="btn btn-success btn-sm" id="approvedStatus" title="Approved Status"><i class="far fa-check-square"></i></a>
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('purchase.show', base64_encode($data->id)) }}" class="btn btn-info btn-sm" title="View"><i class="fas fa-eye"></i></a>
-{{--                            <a href="{{ route('purchase.edit', base64_encode($data->id)) }}" class="btn btn-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>--}}
-                            @if($data->purchase_status === 'pending')
-                            <a href="{{ route('purchase.delete', base64_encode($data->id)) }}" id="deleteData" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                            @elseif($data->purchase_status === 'return')
-                            <a href="{{ route('purchase.delete', base64_encode($data->id)) }}" id="deleteData" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                            @endif
+                            <a href="{{ route('purchase.approved-status', base64_encode($data->id)) }}" class="btn btn-success btn-sm" id="approvedStatus" title="Approved Status"><i class="far fa-check-square"></i></a>
+                            <a href="{{ route('purchase.return-status', base64_encode($data->id)) }}" class="btn btn-danger btn-sm" id="returnStatus" title="Return Status"><i class="fas fa-undo-alt"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -132,40 +119,7 @@
 
 
 @push('js')
+<script>
 
-    <script>
-        $(function () {
-
-            $('body').on('change', '#productStatusToggle', function () {
-                var token = $("meta[name='csrf-token']").attr('content');
-                var id = $(this).attr('data-id');
-                // console.log(id);
-
-                if(this.checked) {
-                    var status = 'active';
-                } else {
-                    var status = 'inactive';
-                }
-                // alert(status);
-
-                $('.loader-overlay').show();
-                $.ajax({
-                    data: {id: id , status: status , _token: token},
-                    url: "/home/products/status",
-                    method: "POST",
-                    success:function (response) {
-                        // alert(response);
-                    $('.loader-overlay').hide();
-
-                    },
-                    error:function () {
-                        alert("Error!");
-                    }
-                });
-
-            });
-
-        });
-    </script>
-
+</script>
 @endpush
