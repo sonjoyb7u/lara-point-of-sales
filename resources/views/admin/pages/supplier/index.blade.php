@@ -71,7 +71,12 @@
                         <td>
                             <a href="{{ route('supplier.show', base64_encode($data->id)) }}" class="btn btn-info btn-sm" title="View"><i class="fas fa-eye"></i></a>
                             <a href="{{ route('supplier.edit', base64_encode($data->id)) }}" class="btn btn-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                            @php
+                                $count_supplier_id = App\Models\Product::with('supplier')->where('supplier_id', $data->id)->select('supplier_id')->count();
+                            @endphp
+                            @if($count_supplier_id < 1)
                             <a href="{{ route('supplier.delete', base64_encode($data->id)) }}" id="deleteData" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

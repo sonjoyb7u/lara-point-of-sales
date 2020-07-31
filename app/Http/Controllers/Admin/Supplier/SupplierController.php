@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Supplier;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +14,7 @@ class SupplierController extends Controller
      * 
      */
     public function index() {
-        $suppliers = Supplier::all();
-        // return $suppliers;
+        $suppliers = Supplier::latest()->get();
         return view('admin.pages.supplier.index', compact('suppliers'));
     }
 

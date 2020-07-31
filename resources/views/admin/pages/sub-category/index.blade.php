@@ -69,7 +69,12 @@
                         <td>
                             <a href="{{ route('sub-category.show', base64_encode($data->id)) }}" class="btn btn-info btn-sm" title="View"><i class="fas fa-eye"></i></a>
                             <a href="{{ route('sub-category.edit', base64_encode($data->id)) }}" class="btn btn-primary btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                            @php
+                                $count_subcat_id = App\Models\Product::with('sub_category')->where('sub_category_id', $data->id)->select('sub_category_id')->count();
+                            @endphp
+                            @if($count_subcat_id < 1)
                             <a href="{{ route('sub-category.delete', base64_encode($data->id)) }}" id="deleteData" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
