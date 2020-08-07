@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/pdf', function () {
+    return view('admin.pages.pdf-files.invoice');
+});
+
 Route::get('admin/dashboard', function () {
     return view('admin.home');
 });
@@ -134,26 +138,22 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::get('return-status/{id}', 'PurchaseController@returnStatus')->name('return-status');
     });
 
-    // PURCHASE SECTION ROUTE...
+    // INVOICE SECTION ROUTE...
     Route::group(['prefix' => 'invoices', 'namespace' => 'Admin\Invoice', 'as' => 'invoice.'], function () {
         Route::get('/', 'InvoiceController@index')->name('index');
         Route::get('create', 'InvoiceController@create')->name('create');
         Route::post('store', 'InvoiceController@store')->name('store');
         Route::get('show/{id}', 'InvoiceController@show')->name('show');
-        Route::get('edit/{id}', 'InvoiceController@edit')->name('edit');
-        Route::put('update/{id}', 'InvoiceController@update')->name('update');
         Route::get('delete/{id}', 'InvoiceController@destroy')->name('delete');
-        Route::post('status', 'InvoiceController@status')->name('status');
-        Route::post('supp-wise-cat', 'InvoiceController@supplierWiseCategory')->name('supp-wise-cat');
         Route::post('cat-wise-subcat', 'InvoiceController@categoryWiseSubCategory')->name('cat-wise-subcat');
         Route::post('cat-wise-unit', 'InvoiceController@categoryWiseUnit')->name('cat-wise-unit');
         Route::post('cat-wise-product', 'InvoiceController@categoryWiseProduct')->name('cat-wise-product');
-        Route::get('check-product-stock/{product_id}', 'InvoiceController@checkProductStock')->name('check-product-stock');
-        Route::post('check-product-stock', 'InvoiceController@checkProductListStock')->name('check-product-stock');
-        Route::get('manage-status', 'InvoiceController@manageStatus')->name('manage-status');
-        Route::get('approved-status/{id}', 'InvoiceController@approvedStatus')->name('approved-status');
-        Route::get('pending-status/{id}', 'InvoiceController@pendingStatus')->name('pending-status');
-        Route::get('return-status/{id}', 'InvoiceController@returnStatus')->name('return-status');
+        Route::post('product-wise-stock', 'InvoiceController@productWiseStock')->name('product-wise-stock');
+        Route::get('invoice-approve/{id}', 'InvoiceController@invoiceApprove')->name('invoice-approve');
+        Route::post('load-invoice-approve-detail', 'InvoiceController@loadInvoiceApproveDetail')->name('load-invoice-approve-detail');
+        Route::post('invoice-approve-create/{invoice_id}', 'InvoiceController@invoiceApproveCreate')->name('invoice-approve-create');
+        Route::get('invoice-print/{invoice_id}', 'InvoiceController@invoicePrint')->name('invoice-print');
+
     });
 
 

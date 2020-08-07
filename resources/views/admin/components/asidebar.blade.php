@@ -271,6 +271,32 @@
               </li>
             </ul>
           </li>
+
+{{--      INVOICE SECTION... --}}
+          <li class="nav-item has-treeview {{ request()->is('home/invoices', 'home/invoices*') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{ request()->is('home/invoices', 'home/invoices/*') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-sitemap"></i>
+              <p>
+                Invoice Section
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">6</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('invoice.create') }}" class="nav-link {{ request()->is('home/invoices/create') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Add Invoice</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('invoice.index') }}" class="nav-link {{ request()->is('home/invoices', 'home/invoices/invoice-approve/*', 'home/invoices/edit*') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <p>Manage Invoices</p>
+                </a>
+              </li>
+            </ul>
+          </li>
           
         </ul>
       </nav>

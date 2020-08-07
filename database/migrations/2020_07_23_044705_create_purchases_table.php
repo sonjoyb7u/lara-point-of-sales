@@ -24,7 +24,7 @@ class CreatePurchasesTable extends Migration
             $table->dateTime('purchase_date');
             $table->string('desc')->nullable();
             $table->decimal('unit_price', 10, 2);
-            $table->decimal('buying_qty', 10, 2)->default(00.00);
+            $table->decimal('buying_qty', 10, 2)->default(0.00);
             $table->decimal('buying_price', 10, 2);
             $table->enum('purchase_status', ['pending', 'approved', 'return'])->default('pending');
             $table->string('created_by', 50)->nullable();

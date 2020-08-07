@@ -154,11 +154,11 @@
 
                             </tbody>
                             <tr>
-                                <td colspan="7"></td>
+                                <td colspan="7" class="text-right">Grand Total : </td>
                                 <td>
 {{--                                Sub Total: <span class="sub-total" style="display: inline-block; width: 60%;"><input type="text" name="sub_total" class="form-control form-control-sm text-right sub_total" id="sub_total" value="0" placeholder="00.00" readonly style="background-color: rgba(19, 132, 150, 0.5); color: #fff;"></span> <br>--}}
 {{--                                Vat/Tax <span class="vat-tax" style="display: inline-block; width: 66%;"><input type="text" name="vat_tax" class="form-control form-control-sm text-right vat_tax" id="vat_tax" value="" placeholder="00.00" style="background-color: rgba(19, 132, 150, 0.5); color: #fff;"></span> <br>--}}
-                                    Total: <span class="total" style="display: inline-block;"><input type="text" name="total_price" class="form-control form-control-sm text-right total_price" id="total_price" value="" placeholder="00.00" readonly style="background-color: rgba(19, 132, 150, 0.3); color: #fff;"></span>
+                                    <input type="text" name="total_price" class="form-control form-control-sm text-right total_price" id="total_price" value="" placeholder="00.00" readonly style="background-color: rgba(19, 132, 150, 0.3); color: #fff;">
                                 </td>
                                 <td></td>
                             </tr>
@@ -193,110 +193,6 @@
 @push('js')
 
 <script type="text/javascript">
-    $(function() {
-        // Supplier wise Category return Data ajax call using jquery...
-        $(document).on('change', '#supplier_id', function() {
-            var csrf_token = $("meta[name='csrf-token']").attr('content');
-            var supplier_id = $(this).val();
-            $.ajax({
-                url: '/home/purchases/supp-wise-cat',
-                type: 'POST',
-                data: {
-                    supplier_id: supplier_id, _token: csrf_token,
-                },
-                success: function(data) {
-                    var html = '<option value="">Choose Category Name</option>';
-                    $.each(data, function(key, val) {
-                        html += '<option value="' + val.category_id + '">' + val.category.name + '</option>';
-                    });
-                    $('#category_id').html(html);
-                },
-                error: function() {
-                    alert('Error!');
-                },
-            });
-        });
-
-        // Category wise Sub category Data return ajax call using jquery...
-        $(document).on('change', '#category_id', function() {
-            var csrf_token = $("meta[name='csrf-token']").attr('content');
-            var category_id = $(this).val();
-            $.ajax({
-                url: '/home/purchases/cat-wise-subcat',
-                type: 'POST',
-                data: {
-                    category_id: category_id, _token: csrf_token,
-                },
-                success: function(data) {
-                    var html = '<option value="0">Choose Sub Category Name</option>';
-                    $.each(data, function(key, val) {
-                        if(val.sub_category != null) {
-                            html += '<option value="' + val.sub_category_id  + '">' + val.sub_category.name + '</option>';
-                        }
-                        // else {
-                        //     html += '<option value="' + 0 + '">No Sub Category Found!</option>';
-                        // }
-
-                    });
-                    $('#sub_category_id').html(html);
-                },
-                error: function() {
-                    alert('Error!');
-                },
-            });
-
-        });
-
-        // Category wise Unit Data return ajax call using jquery...
-        $(document).on('change', '#category_id', function() {
-            var csrf_token = $("meta[name='csrf-token']").attr('content');
-            var category_id = $(this).val();
-            $.ajax({
-                url: '/home/purchases/cat-wise-unit',
-                type: 'POST',
-                data: {
-                    category_id: category_id, _token: csrf_token,
-                },
-                success: function(data) {
-                    var html = '<option value="">Choose Unit Name</option>';
-                    $.each(data, function(key, val) {
-                        html += '<option value="' + val.unit_id + '">' + val.unit.name  + '</option>';
-                    });
-                    $('#unit_id').html(html);
-                },
-                error: function() {
-                    alert('Error!');
-                },
-            });
-
-        });
-
-        // Category wise Product Data return ajax call using jquery...
-        $(document).on('change', '#category_id', function() {
-            var csrf_token = $("meta[name='csrf-token']").attr('content');
-            var category_id = $(this).val();
-            $.ajax({
-                url: '/home/purchases/cat-wise-product',
-                type: 'POST',
-                data: {
-                    category_id: category_id, _token: csrf_token,
-                },
-                success: function(data) {
-                    var html = '<option value="">Choose Product Name</option>';
-                    $.each(data, function(key, val) {
-                        html += '<option value="' + val.id + '">' + val.name + '</option>';
-                    });
-                    $('#product_id').html(html);
-                },
-                error: function() {
-                    alert('Error!');
-                },
-            });
-
-        });
-
-    });
-
     $(document).ready(function() {
 
       $(document).on('click', '.addPurchaseData', function() {

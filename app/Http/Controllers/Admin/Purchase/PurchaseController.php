@@ -16,6 +16,9 @@ use Illuminate\Support\Str;
 
 class PurchaseController extends Controller
 {
+    /**
+     * PurchaseController constructor.
+     */
     public function __construct()
     {
         $suppliers = Supplier::where('status', Supplier::ACTIVE_STATUS)->select('id', 'name')->latest()->get();
@@ -74,7 +77,6 @@ class PurchaseController extends Controller
                 $sub_categories = Product::with('sub_category')->where('category_id', $category_id)->select('sub_category_id')->groupBy('sub_category_id')->get();
 //                dd($sub_categories);
                 return response()->json($sub_categories);
-
 
             }
         }
@@ -158,90 +160,6 @@ class PurchaseController extends Controller
         }
 
     }
-
-    /**
-     * @param  Request  $req
-     * @param $product_id
-     * @return \Illuminate\Http\JsonResponse
-     */
-//    public function checkProductStock(Request $req, $product_id) {
-//        if($req->isMethod('GET')) {
-//            if($req->ajax()) {
-//                $product = Product::where('id', $product_id)->select('qty')->first();
-//                if($product->qty <= 1) {
-//                    return response()->json($product);
-//                } else {
-//                    return response()->json($product);
-//                }
-//            }
-//        }
-//    }
-//
-
-    /**
-     * @param  Request  $req
-     * @return \Illuminate\Http\JsonResponse
-     */
-//    public function checkProductListStock(Request $req) {
-//        if($req->isMethod('POST')) {
-//            if($req->ajax()) {
-//                $product = Product::where('id', $req->product_id)->select('qty')->first();
-//                $product_stock = $product->qty;
-//                $buyQty = $req->quantity;
-//                if($product_stock < $buyQty) {
-//                    return response()->json($product_stock);
-//                }
-//                else {
-//                    return response()->json($product_stock);
-//                }
-//            }
-//        }
-//    }
-
-    /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-//    public function edit($id)
-//    {
-//        $id = base64_decode($id);
-//        $purchase = Purchase::with('supplier', 'unit', 'category', 'sub_category')->find($id);
-//        return view('admin.pages.purchase.edit', compact('purchase'));
-//    }
-
-    /**
-     * @param  Request  $req
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-//    public function update(Request $req, $id)
-//    {
-//        $id = base64_decode($id);
-//        $purchase = Purchase::find($id);
-//
-//        $purchase->supplier_id = $req->supplier_id;
-//        $purchase->unit_id = $req->unit_id;
-//        $purchase->category_id = $req->category_id;
-//        $purchase->sub_category_id = $req->sub_category_id;
-//        $purchase->sub_category_id = $req->sub_category_id;
-//        $purchase->name = $req->name;
-//        $purchase->slug = Str::slug($req->name);
-//        $purchase->qty = $req->qty;
-//        $purchase->updated_by = Auth::user()->name;
-//
-//        $update = $purchase->update();
-//
-//        if ($update) {
-//            getMessage('success', 'Success, Product has been Updated.');
-//            return redirect()->route('product.index')->with('success', 'Success, Product has been Updated.');
-//
-//        } else {
-//            getMessage('danger', 'Failed, Product has not been Updated.');
-//            return redirect()->back()->with('error', 'Failed, Product has not been Updated.');
-//
-//        }
-//
-//    }
 
     /**
      * @param $id

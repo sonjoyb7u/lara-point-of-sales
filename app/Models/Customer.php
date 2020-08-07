@@ -12,4 +12,8 @@ class Customer extends Model
 
     public const ACTIVE_STATUS = 'active';
     public const INACTIVE_STATUS = 'inactive';
+
+    public function payments() {
+        return $this->hasMany(Payment::class);
+    }
 }

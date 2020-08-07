@@ -1,3 +1,4 @@
+const SITE_URL = 'http://lara-point-of-sales.sonjoy';
 
 // Data table page script...
 $(function () {
@@ -495,47 +496,172 @@ $(document).ready(function () {
 
 });
 
-// Form validation for Edit/Change Purchase Form jQuery...
-$(document).ready(function () {
-    $('#purchaseCreateForm').validate({
-        rules: {
-            desc: {
-                required: true,
+// Data retrived from database for Purchase & Invoice section using ajax call js...
+$(document).ready(function() {
+    // Supplier wise Category return Data ajax call using jquery...
+    $(document).on('change', '#supplier_id', function() {
+        var csrf_token = $("meta[name='csrf-token']").attr('content');
+        var supplier_id = $(this).val();
+        $.ajax({
+            url: SITE_URL + '/home/purchases/supp-wise-cat',
+            type: 'POST',
+            data: {
+                supplier_id: supplier_id, _token: csrf_token,
             },
-            buying_qty: {
-                required: true,
+            success: function(data) {
+                var html = '<option value="">Choose Category Name</option>';
+                $.each(data, function(key, val) {
+                    html += '<option value="' + val.category_id + '">' + val.category.name + '</option>';
+                });
+                $('#category_id').html(html);
             },
-            unit_price: {
-                required: true,
+            error: function() {
+                alert('Error!');
             },
-        },
-        messages: {
-            desc: {
-                required: "Please Enter Product Description!",
+        });
+    });
+    // Category wise Sub category Data return ajax call using jquery...
+    $(document).on('change', '#category_id', function() {
+        var csrf_token = $("meta[name='csrf-token']").attr('content');
+        var category_id = $(this).val();
+        $.ajax({
+            url: SITE_URL + '/home/purchases/cat-wise-subcat',
+            type: 'POST',
+            data: {
+                category_id: category_id, _token: csrf_token,
             },
-            buying_qty: {
-                required: "Please Enter Product Quantity!",
-            },
-            unit_price: {
-                required: "Please Enter Product Price!",
-            },
+            success: function(data) {
+                var html = '<option value="0">Choose Sub Category Name</option>';
+                $.each(data, function(key, val) {
+                    if(val.sub_category != null) {
+                        html += '<option value="' + val.sub_category_id  + '">' + val.sub_category.name + '</option>';
+                    }
+                    // else {
+                    //     html += '<option value="' + 0 + '">No Sub Category Found!</option>';
+                    // }
 
-        },
+                });
+                $('#sub_category_id').html(html);
+            },
+            error: function() {
+                alert('Error!');
+            },
+        });
 
-        errorElement: 'span',
-        errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        }
+    });
+
+    // Category wise Unit Data return ajax call using jquery...
+    $(document).on('change', '#category_id', function() {
+        var csrf_token = $("meta[name='csrf-token']").attr('content');
+        var category_id = $(this).val();
+        $.ajax({
+            url: SITE_URL + '/home/purchases/cat-wise-unit',
+            type: 'POST',
+            data: {
+                category_id: category_id, _token: csrf_token,
+            },
+            success: function(data) {
+                var html = '<option value="">Choose Unit Name</option>';
+                $.each(data, function(key, val) {
+                    html += '<option value="' + val.unit_id + '">' + val.unit.name  + '</option>';
+                });
+                $('#unit_id').html(html);
+            },
+            error: function() {
+                alert('Error!');
+            },
+        });
+
+    });
+
+    // Category wise Product Data return ajax call using jquery...
+    $(document).on('change', '#category_id', function() {
+        var csrf_token = $("meta[name='csrf-token']").attr('content');
+        var category_id = $(this).val();
+        $.ajax({
+            url: SITE_URL + '/home/purchases/cat-wise-product',
+            type: 'POST',
+            data: {
+                category_id: category_id, _token: csrf_token,
+            },
+            success: function(data) {
+                var html = '<option value="">Choose Product Name</option>';
+                $.each(data, function(key, val) {
+                    html += '<option value="' + val.id + '">' + val.name + '</option>';
+                });
+                $('#product_id').html(html);
+            },
+            error: function() {
+                alert('Error!');
+            },
+        });
+
+    });
+
+    // Product wise Product Stock return ajax call using jquery...
+    $(document).on('change', '#product_id', function() {
+        var csrf_token = $("meta[name='csrf-token']").attr('content');
+        var product_id = $(this).val();
+        $.ajax({
+            url: SITE_URL + '/home/invoices/product-wise-stock',
+            type: 'POST',
+            data: {
+                product_id: product_id, _token: csrf_token,
+            },
+            success: function(data) {
+                $('#qty').val(data);
+            },
+            error: function() {
+                alert('Error!');
+            },
+        });
+
     });
 
 });
+
+
+// Form validation for Edit/Change Purchase Form jQuery...
+// $(document).ready(function () {
+//     $('#purchaseCreateForm').validate({
+//         rules: {
+//             desc: {
+//                 required: true,
+//             },
+//             buying_qty: {
+//                 required: true,
+//             },
+//             unit_price: {
+//                 required: true,
+//             },
+//         },
+//         messages: {
+//             desc: {
+//                 required: "Please Enter Product Description!",
+//             },
+//             buying_qty: {
+//                 required: "Please Enter Product Quantity!",
+//             },
+//             unit_price: {
+//                 required: "Please Enter Product Price!",
+//             },
+//
+//         },
+//
+//         errorElement: 'span',
+//         errorPlacement: function (error, element) {
+//             error.addClass('invalid-feedback');
+//             element.closest('.form-group').append(error);
+//         },
+//         highlight: function (element, errorClass, validClass) {
+//             $(element).addClass('is-invalid');
+//         },
+//         unhighlight: function (element, errorClass, validClass) {
+//             $(element).removeClass('is-invalid');
+//         }
+//     });
+//
+// });
 
 // DATETIME GIJGO PICKER START/END using js...
 $('.datetimepicker').datetimepicker({
@@ -544,6 +670,8 @@ $('.datetimepicker').datetimepicker({
     footer: true,
     modal: true
 });
+
+//
 
 
 
