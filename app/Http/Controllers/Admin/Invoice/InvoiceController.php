@@ -358,12 +358,49 @@ class InvoiceController extends Controller
         }
     }
 
+    /**
+     * @param $invoice_id
+     * @return mixed
+     */
     public function invoicePrint($invoice_id) {
         $invoice = Invoice::with('payment', 'invoice_details')->where('id', $invoice_id)->first();
         $pdf = PDF::loadView('admin.pages.pdf-files.invoice', compact('invoice'));
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
-        return $pdf->stream('invoice.pdf');
+        return $pdf->stream('document.pdf');
 
+    }
+
+    public function invoiceReportDaily() {
+        return view('admin.pages.invoice.daily-invoice-report');
+    }
+
+    public function invoiceReportDailyPdf(Request $req) {
+        if($req->isMethod('POST')) {
+            if($req->ajax()) {
+                $start_date = $req->start_date;
+                $end_date = $req->end_date;
+                $invoices = Invoice::with('payment', 'invoice_details')
+                                    ->whereBetween('date', [$start_date, $end_date])
+                                    ->where('status', Invoice::APPROVED_STATUS)->get();
+                if($invoices->count() > 0) {
+//                dd($invoice);
+                    return view('admin.pages.invoice.load-invoice-report-daily', compact('invoices', 'start_date', 'end_date'));
+                } else {
+                    return "Sorry, Date wise invoice report not found!";
+                }
+
+            }
+        }
+    }
+
+    public function invoiceDailyReportPdfPrint(Request $req) {
+        $invoice_id = base64_decode($req->invoice_id);
+        $start_date = $req->start_date;
+        $end_date = $req->end_date;
+        $invoices = Invoice::with('payment', 'invoice_details')->where('id', $invoice_id)->get();
+        $pdf = PDF::loadView('admin.pages.pdf-files.daily-invoice-report-pdf', compact('invoices', 'start_date', 'end_date'));
+        $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        return $pdf->stream('document.pdf');
     }
 
 }

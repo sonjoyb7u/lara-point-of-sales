@@ -1,4 +1,3 @@
-
 @extends('layouts.admin.app')
 
 @section('title', 'Approved Detail || ')

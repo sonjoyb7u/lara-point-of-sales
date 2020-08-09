@@ -153,6 +153,9 @@ Route::group(['prefix' => '/home', 'middleware' => ['auth', 'status']], function
         Route::post('load-invoice-approve-detail', 'InvoiceController@loadInvoiceApproveDetail')->name('load-invoice-approve-detail');
         Route::post('invoice-approve-create/{invoice_id}', 'InvoiceController@invoiceApproveCreate')->name('invoice-approve-create');
         Route::get('invoice-print/{invoice_id}', 'InvoiceController@invoicePrint')->name('invoice-print');
+        Route::get('invoice-report-daily', 'InvoiceController@invoiceReportDaily')->name('invoice-report-daily');
+        Route::post('invoice-report-daily-pdf', 'InvoiceController@invoiceReportDailyPdf')->name('invoice-report-daily-pdf');
+        Route::post('invoice-daily-report-pdf-print', 'InvoiceController@invoiceDailyReportPdfPrint')->name('invoice-daily-report-pdf-print');
 
     });
 

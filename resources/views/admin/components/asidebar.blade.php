@@ -295,6 +295,12 @@
                   <p>Manage Invoices</p>
                 </a>
               </li>
+                <li class="nav-item">
+                <a href="{{ route('invoice.invoice-report-daily') }}" class="nav-link {{ request()->is('home/invoices/invoice-report-daily') ? 'active' : ''}}">
+                  <i class="fas fa-puzzle-piece nav-icon"></i>
+                  <P>Invoice Report(Daily)</p>
+                </a>
+              </li>
             </ul>
           </li>
           

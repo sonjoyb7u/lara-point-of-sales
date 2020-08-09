@@ -1,16 +1,28 @@
+.container {
+    width: 650px;
+    margin: 0 auto;
+}
 #invoice{
     padding: 30px;
 }
 .invoice {
     position: relative;
     background-color: #FFF;
-    min-height: 680px;
     padding: 15px
 }
 .invoice header {
     padding: 10px 0;
     margin-bottom: 20px;
-    border-bottom: 1px solid #3989c6
+    border-bottom: 2px solid #3989c6
+}
+.invoice-logo img {
+    float: left;
+    width: 27%;
+    display: inline-block;
+}
+.logo-head h2 {
+    display: inline-block;
+    margin-top: 25px;
 }
 .invoice .company-details {
     text-align: right
@@ -20,10 +32,10 @@
     margin-bottom: 0
 }
 .invoice .contacts {
-    margin-bottom: 20px
+    margin: 32px 0;
 }
 .invoice .invoice-to {
-    text-align: left
+    float: left
 }
 .invoice .invoice-to .to {
     margin-top: 0;
@@ -33,7 +45,7 @@
     text-align: right
 }
 .invoice .invoice-details .invoice-id {
-    margin-top: 0;
+    margin: 5px 0;
     color: #3989c6
 }
 .invoice main {
@@ -58,7 +70,7 @@
     margin-bottom: 20px
 }
 .invoice table td,.invoice table th {
-    padding: 15px;
+    padding: 5px;
     background: #eee;
     border-bottom: 1px solid #fff
 }

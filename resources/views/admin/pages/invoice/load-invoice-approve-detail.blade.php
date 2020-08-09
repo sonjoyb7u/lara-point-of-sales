@@ -1,14 +1,14 @@
 <div class="card-body">
     <h4>Customer Information :</h4>
-    <table id="example1" class="table table-striped table-responsive">
+    <table id="example1" class="table table-striped">
         <thead>
         </thead>
         <tbody>
         <tr>
-            <td width="16%"><strong>Customer Name : </strong><p>{{ $invoice->payment->customer->name }}</p></td>
-            <td width="17%"><strong>Customer Mobile : </strong><p>{{ $invoice->payment->customer->phone }}</p></td>
-            <td><strong>Customer Address : </strong><p>{{ $invoice->payment->customer->address }}</p></td>
-            <td><strong>Product Details : </strong><p>{{ $invoice->desc }}</p></td>
+            <td width="16%"><strong class="text-center">Customer Name : </strong><p>{{ $invoice->payment->customer->name }}</p></td>
+            <td width="17%"><strong class="text-center">Customer Mobile : </strong><p>{{ $invoice->payment->customer->phone }}</p></td>
+            <td><strong class="text-center">Customer Address : </strong><p>{{ $invoice->payment->customer->address }}</p></td>
+            <td><strong class="text-center">Product Details : </strong><p>{{ $invoice->desc }}</p></td>
         </tr>
         </tbody>
     </table>
@@ -42,10 +42,11 @@
                     <td>{{ $invoice_detail->category->name }}</td>
 
                     <td>
-                        @foreach($invoice_detail->category->sub_categories as $key => $sub_category)
-                            {{ $key + 1 }} ) {{ $sub_category->name }}
-                            <br>
-                        @endforeach
+                        {{ $invoice_detail->sub_category->id === $invoice_detail->sub_category_id ? $invoice_detail->sub_category->name : 'NA' }}
+{{--                        @foreach($invoice_detail->category->sub_categories as $key => $sub_category)--}}
+{{--                            {{ $key + 1 }} ) {{ $sub_category->name }}--}}
+{{--                            <br>--}}
+{{--                        @endforeach--}}
                     </td>
 
                     <td>{{ $invoice_detail->product->name }}</td>

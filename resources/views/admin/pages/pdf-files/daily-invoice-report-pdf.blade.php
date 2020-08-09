@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invoice - PDF</title>
+    <title>Daily Invoice Report - PDF</title>
     <link rel="stylesheet" href="{{ asset('assets/admin/custom/plugins/pdf-table/css/pdf-table.css') }}">
 </head>
 
@@ -36,73 +36,53 @@
                                     <div>product.sales@gmail.com</div>
                                 </div>
                             </div>
+                            <hr>
+                                <div style="width: 650px; margin: 0 auto; padding: 10px;"><strong>Date Range : </strong>{{ date('d(D)-m-Y', strtotime($start_date)) }} To {{ date('d(D)-m-Y', strtotime($end_date)) }}</div>
                         </header>
                         <main>
-                            <div class="row contacts">
-                                <div class="col invoice-to">
-                                    <div class="text-gray-light">INVOICE TO:</div>
-                                    <h2 class="to">{{ $invoice->payment->customer->name }}</h2>
-                                    <div class="address">{{ $invoice->payment->customer->address }}</div>
-                                    <div class="email"><a href="#">{{ $invoice->payment->customer->email ? $invoice->payment->customer->email : 'NA' }}</a></div>
-                                </div>
-                                <div class="col invoice-details">
-                                    <h1 class="invoice-id">INVOICE #00{{ $invoice->invoice_no }}</h1>
-                                    <div class="date">Date of Invoice: {{ date('(D)d/m/Y', strtotime($invoice->date)) }}</div>
-                                    <div class="date">Due Date: NA</div>
-                                </div>
-                            </div>
                             <table border="0" cellspacing="0" cellpadding="0">
                                 <thead>
                                 <tr>
                                     <th>Sl No.</th>
-                                    <th>Category</th>
+                                    <th>Customer Info</th>
+                                    <th>Invoice No.</th>
+                                    <th>Invoice Date</th>
                                     <th>Product Name</th>
                                     <th class="text-left">Description</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
                                     <th>Total Price</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @php($sub_total = 0)
-                                @foreach($invoice->invoice_details as $invoice_detail)
-                                <tr>
-                                    <td class="no">{{ $loop->iteration }}</td>
-                                    <td>{{ $invoice_detail->category->name }}</td>
-                                    <td class="text-left">{{ $invoice_detail->product->name }}</td>
-                                    <td>{{ $invoice->desc }}</td>
-                                    <td class="qty">{{ $invoice_detail->selling_qty }}</td>
-                                    <td class="unit">&#2547;{{ $invoice_detail->unit_price }}</td>
-                                    <td class="total">&#2547;{{ $invoice_detail->selling_price }}</td>
-                                </tr>
-                                @php($sub_total += $invoice_detail->selling_price)
+                                @php($grand_total = 0)
+                                @php($discount = 0)
+                                @foreach($invoices as $data)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $data->payment->customer->name }} ({{ $data->payment->customer->phone }})</td>
+                                        <td>##00{{ $data->invoice_no }}</td>
+                                        <td>{{ date('(D)-d-m-Y H:m a', strtotime($data->date)) }}</td>
+                                        <td>
+                                            @foreach($data->invoice_details as $invoice_detail)
+                                            {{ $invoice_detail->product->name }}
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $data->desc }}</td>
+                                        <td>{{ $data->payment->total_amount + $data->payment->discount_amount }}</td>
+                                    </tr>
+                                    @php($grand_total += $data->payment->total_amount)
+                                    @php($discount += $data->payment->discount_amount)
                                 @endforeach
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <td colspan="5"></td>
-                                    <td>SUBTOTAL</td>
-                                    <td>&#2547;{{ $sub_total }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5"></td>
                                     <td>DISCOUNT</td>
-                                    <td>( - ) &#2547;{{ $invoice->payment->discount_amount }}</td>
+                                    <td>( - ) &#2547;{{ $discount }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="5"></td>
                                     <td>GRAND TOTAL</td>
-                                    <td>&#2547;{{ $invoice->payment->total_amount }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5"></td>
-                                    <td>PAID AMOUNT</td>
-                                    <td>&#2547;{{ $invoice->payment->paid_amount }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5"></td>
-                                    <td>DUE AMOUNT</td>
-                                    <td>&#2547;{{ $invoice->payment->due_amount }}</td>
+                                    <td>&#2547;{{ $grand_total }}</td>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -130,3 +110,4 @@
 
 </body>
 </html>
+

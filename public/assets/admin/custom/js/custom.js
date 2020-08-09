@@ -623,27 +623,22 @@ $(document).ready(function() {
 
 // Form validation for Edit/Change Purchase Form jQuery...
 // $(document).ready(function () {
-//     $('#purchaseCreateForm').validate({
+//     $('#dateWiseInvoice').validate({
 //         rules: {
-//             desc: {
+//             start_date: {
 //                 required: true,
 //             },
-//             buying_qty: {
+//             end_date: {
 //                 required: true,
 //             },
-//             unit_price: {
-//                 required: true,
-//             },
+//
 //         },
 //         messages: {
-//             desc: {
-//                 required: "Please Enter Product Description!",
+//             start_date: {
+//                 required: "Please Enter Start Date!",
 //             },
-//             buying_qty: {
-//                 required: "Please Enter Product Quantity!",
-//             },
-//             unit_price: {
-//                 required: "Please Enter Product Price!",
+//             end_date: {
+//                 required: "Please Enter End Date!",
 //             },
 //
 //         },
@@ -667,6 +662,21 @@ $(document).ready(function() {
 $('.datetimepicker').datetimepicker({
     uiLibrary: 'bootstrap4',
     format: 'yyyy-mm-dd hh:MM',
+    footer: true,
+    modal: true
+});
+
+// Search start date wise Invoice using DATETIME GIJGO PICKER START/END js...
+$('.datetimepicker1').datetimepicker({
+    uiLibrary: 'bootstrap4',
+    format: 'yyyy-mm-dd',
+    footer: true,
+    modal: true
+});
+// Search end date wise Invoice using DATETIME GIJGO PICKER START/END js...
+$('.datetimepicker2').datetimepicker({
+    uiLibrary: 'bootstrap4',
+    format: 'yyyy-mm-dd',
     footer: true,
     modal: true
 });
